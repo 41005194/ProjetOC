@@ -208,9 +208,6 @@ python scripts/compare_acos.py --iterations 40 --colony-size 12 --seeds 7 17 23 
 
 ```text
 .
-|-- .github/
-|   `-- agents/
-|       `-- knapsack-aco-ml.agent.md
 |-- scripts/
 |   `-- compare_acos.py
 |-- src/
