@@ -116,11 +116,11 @@ class ParameterTuningModel:
             return self._predict_with_fallback(vector)
 
         prediction = self._model.predict([vector])[0]
-        return ACOParams(
+        return self._build_bounded_params(
             alpha=float(prediction[0]),
             beta=float(prediction[1]),
             evaporation=float(prediction[2]),
-        ).bounded()
+        )
 
     def _predict_with_fallback(self, vector: Sequence[float]) -> ACOParams:
         distances: list[float] = []
@@ -144,11 +144,18 @@ class ParameterTuningModel:
             alpha += weight * record.target_params.alpha
             beta += weight * record.target_params.beta
             evaporation += weight * record.target_params.evaporation
-        return ACOParams(
+        return self._build_bounded_params(
             alpha=alpha / total_weight,
             beta=beta / total_weight,
             evaporation=evaporation / total_weight,
-        ).bounded()
+        )
+
+    def _build_bounded_params(self, *, alpha: float, beta: float, evaporation: float) -> ACOParams:
+        return ACOParams(
+            alpha=min(max(alpha, 0.1), 6.0),
+            beta=min(max(beta, 0.1), 8.0),
+            evaporation=min(max(evaporation, 0.05), 0.95),
+        )
 
 
 def fit_training_records(training_records: Sequence[TrainingRecord]) -> ParameterTuningModel:
