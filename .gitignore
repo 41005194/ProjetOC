@@ -1,0 +1,75 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Native extensions and build artifacts
+*.so
+*.pyd
+*.dll
+build/
+dist/
+site/
+*.egg
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging and installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test, coverage, and tool caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.tox/
+.nox/
+coverage.xml
+nosetests.xml
+pytest-cache-files-*/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Type checker and static analysis
+.dmypy.json
+dmypy.json
+
+# Local configuration and secrets
+.env
+.env.*
+*.local
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and runtime files
+*.log
+*.pid
+*.seed
+*.out
+*.err
+
+# Optional local datasets and experiment outputs
+artifacts/
+reports/
+.github/
