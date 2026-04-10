@@ -108,7 +108,8 @@ Les éléments importants sont :
 - `knapsack_aco.py` : solveur ACO de base ;
 - `ml.py` : extraction de features et modèle de réglage des paramètres ;
 - `knapsack_aco_ml.py` : solveur ACO enrichi par ML ;
-- `comparison.py` : exécution batch, récupération des résultats bruts et comparaison entre variantes.
+- `comparison.py` : exécution batch, récupération des résultats bruts et comparaison entre variantes ;
+- `benchmarks.py` : instances de démonstration, petit jeu d'instances orienté rapport, seeds par défaut et enregistrements synthétiques pour la partie ML.
 
 Le projet contient également un script d'exécution :
 
@@ -116,14 +117,14 @@ Le projet contient également un script d'exécution :
 
 Ce script permet de :
 
-- lancer les deux variantes sur une instance de démonstration ;
-- utiliser les mêmes seeds, le même budget d'itérations et la même taille de colonie ;
+- lancer les deux variantes soit sur une instance de démonstration, soit sur un petit jeu d'instances de benchmark ;
+- utiliser les mêmes seeds, le même budget d'itérations et la même taille de colonie pour les deux solveurs ;
 - récupérer les résultats run par run ;
-- afficher un résumé global et un détail par seed.
+- afficher un résumé par instance et un détail par seed.
 
 ## Expérimentations
 
-Les expérimentations sont pour l'instant structurées autour des tests automatisés et du script de comparaison.
+Les expérimentations sont structurées autour des tests automatisés et du script de comparaison.
 
 Les tests couvrent notamment :
 
@@ -132,9 +133,16 @@ Les tests couvrent notamment :
 - les cas limites comme une capacité nulle ou une liste d'objets vide ;
 - l'entraînement minimal de la partie ML ;
 - la validité des paramètres prédits ;
+- le bornage des prédictions ML même lorsque le modèle extrapole en dehors des intervalles admissibles ;
+- la présence d'un petit jeu d'instances de benchmark ;
 - la comparaison batch entre baseline et variante ML.
 
-Le script `scripts/compare_acos.py` permet de produire une sortie de comparaison du type :
+Le script `scripts/compare_acos.py` fournit maintenant deux modes :
+
+- `demo` : une seule instance simple pour valider rapidement l'exécution ;
+- `report` : quatre instances de tailles et profils différents (`balanced_small`, `dense_medium`, `tight_capacity`, `wide_large`) avec 10 seeds par défaut.
+
+Les métriques produites pour chaque instance sont :
 
 - meilleure valeur atteinte ;
 - valeur moyenne sur plusieurs exécutions ;
@@ -143,7 +151,7 @@ Le script `scripts/compare_acos.py` permet de produire une sortie de comparaison
 - temps total d'exécution ;
 - écart baseline / ML pour chaque seed.
 
-À ce stade, ces expérimentations servent d'abord à comparer proprement les deux approches, et non à affirmer de manière générale que la variante ML est meilleure.
+Dans l'état actuel du dépôt, ces expérimentations montrent surtout que l'infrastructure de comparaison est robuste et reproductible. Elles ne permettent pas encore d'affirmer que la variante ML domine systématiquement le baseline.
 
 ## Analyse et limites
 
@@ -155,27 +163,29 @@ Ce dépôt apporte déjà plusieurs éléments utiles :
 - une séparation nette entre solveur baseline, solveur ML et couche de comparaison ;
 - une exécution reproductible grâce à l'utilisation explicite des seeds ;
 - une API qui permet de récupérer les résultats bruts puis de les comparer proprement ;
-- une première intégration ML qui reste simple à comprendre et à faire évoluer.
+- une première intégration ML qui reste simple à comprendre et à faire évoluer ;
+- une petite base de benchmarks réutilisable pour alimenter la méthodologie et les résultats du rapport.
 
 ### Limite
 
 Le projet présente aussi plusieurs limites importantes :
 
 - les données d'entraînement ML sont actuellement synthétiques et peu nombreuses ;
-- la variante ML n'est pas encore validée sur un vrai corpus de benchmarks ;
-- la comparaison actuelle porte surtout sur l'infrastructure de test et non sur une étude statistique approfondie ;
-- les instances utilisées restent modestes ;
+- la variante ML n'est pas encore validée sur un vrai corpus standard de benchmarks ;
+- le jeu d'instances ajouté reste volontairement modeste et construit à la main ;
+- la comparaison actuelle est utile pour un premier rapport expérimental, mais reste en deçà d'une étude statistique approfondie ;
+- sur les benchmarks actuels, le ML n'apporte pas encore de gain net en qualité et induit souvent un léger surcoût en temps ;
 - aucun claim de supériorité robuste de l'approche ML ne doit être tiré de l'état actuel du dépôt.
 
 ### Pistes d'améliorations
 
 Parmi les évolutions naturelles du projet :
 
-- ajouter des jeux d'instances plus variés et plus grands ;
+- ajouter des jeux d'instances plus variés, plus grands et éventuellement issus de benchmarks reconnus ;
 - générer ou collecter des données d'entraînement plus réalistes ;
 - tester d'autres modèles de prédiction de paramètres ;
 - étendre les métriques de comparaison ;
-- ajouter un mode benchmark plus complet avec export des résultats ;
+- ajouter un export CSV ou Markdown des résultats pour intégration directe dans le rapport ;
 - étudier plus finement l'influence de `alpha`, `beta`, `evaporation` et `tuning_interval`.
 
 # Execution
@@ -186,10 +196,22 @@ Installation des dépendances :
 python -m pip install -e .
 ```
 
+Avec l'environnement virtuel local du projet :
+
+```powershell
+.venv/bin/pip install -e .
+```
+
 Lancer les tests :
 
 ```powershell
 python -m pytest
+```
+
+Ou avec le virtualenv local :
+
+```powershell
+.venv/bin/python -m pytest
 ```
 
 Lancer la comparaison baseline vs ACO + ML :
@@ -198,10 +220,18 @@ Lancer la comparaison baseline vs ACO + ML :
 python scripts/compare_acos.py
 ```
 
+Par défaut, cette commande lance le petit benchmark `report` sur 4 instances et 10 seeds.
+
+Lancer uniquement l'instance de démonstration :
+
+```powershell
+python scripts/compare_acos.py --instance-set demo
+```
+
 Exemple avec paramètres personnalisés :
 
 ```powershell
-python scripts/compare_acos.py --iterations 40 --colony-size 12 --seeds 7 17 23 31 --tuning-interval 1
+python scripts/compare_acos.py --instance-set report --iterations 40 --colony-size 12 --seeds 7 8 9 10 11 12 13 14 15 16 --tuning-interval 1
 ```
 
 # Structure du dépôt
@@ -212,6 +242,7 @@ python scripts/compare_acos.py --iterations 40 --colony-size 12 --seeds 7 17 23 
 |   `-- compare_acos.py
 |-- src/
 |   `-- metaheuristique/
+|       |-- benchmarks.py
 |       |-- __init__.py
 |       |-- comparison.py
 |       |-- knapsack_aco.py
@@ -219,6 +250,7 @@ python scripts/compare_acos.py --iterations 40 --colony-size 12 --seeds 7 17 23 
 |       |-- ml.py
 |       `-- types.py
 |-- tests/
+|   |-- test_benchmarks.py
 |   |-- conftest.py
 |   |-- test_comparison.py
 |   |-- test_knapsack_aco.py

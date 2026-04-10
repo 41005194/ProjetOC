@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from metaheuristique import MLTunedKnapsackACOSolver
-from metaheuristique.ml import FEATURE_ORDER, extract_state_features
+from metaheuristique.ml import FEATURE_ORDER, ParameterTuningModel, extract_state_features
+from metaheuristique.types import ACOParams
 from metaheuristique.types import Solution
 
 
@@ -58,3 +59,17 @@ def test_extract_state_features_reports_diversity_and_progress(micro_instance) -
     assert set(features) == set(FEATURE_ORDER)
     assert features["diversity_ratio"] == 1.0
     assert 0 < features["normalized_best_value"] <= 1.0
+
+
+def test_parameter_tuning_model_clamps_out_of_range_predictions(training_records) -> None:
+    model = ParameterTuningModel()
+    model.fit(training_records)
+
+    class StubRegressor:
+        def predict(self, _: list[list[float]]) -> list[list[float]]:
+            return [[-3.0, 20.0, 1.7]]
+
+    model._model = StubRegressor()
+    prediction = model.predict({name: 0.5 for name in FEATURE_ORDER})
+
+    assert prediction == ACOParams(alpha=0.1, beta=8.0, evaporation=0.95)
