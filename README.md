@@ -111,16 +111,20 @@ Les éléments importants sont :
 - `comparison.py` : exécution batch, récupération des résultats bruts et comparaison entre variantes ;
 - `benchmarks.py` : instances de démonstration, petit jeu d'instances orienté rapport, seeds par défaut et enregistrements synthétiques pour la partie ML.
 
-Le projet contient également un script d'exécution :
+Le projet contient également deux scripts d'exécution :
 
 - `scripts/compare_acos.py`
+- `scripts/generate_report_graphs.py`
 
-Ce script permet de :
+Le premier script permet de :
 
 - lancer les deux variantes soit sur une instance de démonstration, soit sur un petit jeu d'instances de benchmark ;
 - utiliser les mêmes seeds, le même budget d'itérations et la même taille de colonie pour les deux solveurs ;
 - récupérer les résultats run par run ;
-- afficher un résumé par instance et un détail par seed.
+- afficher un résumé par instance et un détail par seed ;
+- exporter les résultats dans le dossier `results/` sous forme de fichiers CSV et Markdown.
+
+Le second script lit ces exports et génère des graphiques SVG prêts à être intégrés dans le rapport.
 
 ## Expérimentations
 
@@ -142,7 +146,7 @@ Le script `scripts/compare_acos.py` fournit maintenant deux modes :
 - `demo` : une seule instance simple pour valider rapidement l'exécution ;
 - `report` : quatre instances de tailles et profils différents (`balanced_small`, `dense_medium`, `tight_capacity`, `wide_large`) avec 10 seeds par défaut.
 
-Les métriques produites pour chaque instance sont :
+Les sorties produites pour chaque instance comprennent :
 
 - meilleure valeur atteinte ;
 - valeur moyenne sur plusieurs exécutions ;
@@ -150,6 +154,18 @@ Les métriques produites pour chaque instance sont :
 - nombre de solutions invalides ;
 - temps total d'exécution ;
 - écart baseline / ML pour chaque seed.
+
+Lors d'une exécution benchmark, le projet exporte également :
+
+- `results/comparison_summary.csv` ;
+- `results/comparison_runs.csv` ;
+- `results/comparison_summary.md`.
+
+Une fois ces exports générés, `scripts/generate_report_graphs.py` produit :
+
+- `results/mean_value_comparison.svg` ;
+- `results/runtime_comparison.svg` ;
+- `results/runtime_delta_per_seed.svg`.
 
 Dans l'état actuel du dépôt, ces expérimentations montrent surtout que l'infrastructure de comparaison est robuste et reproductible. Elles ne permettent pas encore d'affirmer que la variante ML domine systématiquement le baseline.
 
@@ -199,7 +215,7 @@ python -m pip install -e .
 Avec l'environnement virtuel local du projet :
 
 ```powershell
-.venv/bin/pip install -e .
+.venv\Scripts\pip install -e .
 ```
 
 Lancer les tests :
@@ -211,7 +227,7 @@ python -m pytest
 Ou avec le virtualenv local :
 
 ```powershell
-.venv/bin/python -m pytest
+.venv\Scripts\python -m pytest
 ```
 
 Lancer la comparaison baseline vs ACO + ML :
@@ -234,12 +250,26 @@ Exemple avec paramètres personnalisés :
 python scripts/compare_acos.py --instance-set report --iterations 40 --colony-size 12 --seeds 7 8 9 10 11 12 13 14 15 16 --tuning-interval 1
 ```
 
+Générer les graphiques SVG à partir des exports présents dans `results/` :
+
+```powershell
+python scripts/generate_report_graphs.py
+```
+
 # Structure du dépôt
 
 ```text
 .
+|-- results/
+|   |-- comparison_runs.csv
+|   |-- comparison_summary.csv
+|   |-- comparison_summary.md
+|   |-- mean_value_comparison.svg
+|   |-- runtime_comparison.svg
+|   `-- runtime_delta_per_seed.svg
 |-- scripts/
 |   `-- compare_acos.py
+|   `-- generate_report_graphs.py
 |-- src/
 |   `-- metaheuristique/
 |       |-- benchmarks.py
@@ -251,8 +281,10 @@ python scripts/compare_acos.py --instance-set report --iterations 40 --colony-si
 |       `-- types.py
 |-- tests/
 |   |-- test_benchmarks.py
+|   |-- test_compare_script_exports.py
 |   |-- conftest.py
 |   |-- test_comparison.py
+|   |-- test_generate_report_graphs.py
 |   |-- test_knapsack_aco.py
 |   `-- test_knapsack_aco_ml.py
 |-- .gitignore
