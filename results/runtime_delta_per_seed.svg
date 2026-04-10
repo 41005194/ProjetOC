@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+<style>
+text { font-family: Arial, sans-serif; fill: #1f2937; }
+.title { font-size: 20px; font-weight: bold; }
+.label { font-size: 12px; }
+.small { font-size: 11px; }
+</style>
+<rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
+<text class="title" x="90" y="35">Delta de temps par seed</text>
+<text class="label" x="90" y="58">Valeur positive: la variante ML est plus lente. Valeur negative: la variante ML est plus rapide.</text>
+<line x1="90" y1="85" x2="90" y2="430" stroke="#475569" stroke-width="1.5"/>
+<line x1="90" y1="257.50" x2="1060" y2="257.50" stroke="#334155" stroke-width="1.5"/>
+<line x1="90" y1="430.00" x2="1060" y2="430.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="434.00" text-anchor="end">-0.0504</text>
+<line x1="90" y1="343.75" x2="1060" y2="343.75" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="347.75" text-anchor="end">-0.0252</text>
+<line x1="90" y1="171.25" x2="1060" y2="171.25" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="175.25" text-anchor="end">0.0252</text>
+<line x1="90" y1="85.00" x2="1060" y2="85.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="89.00" text-anchor="end">0.0504</text>
+<rect x="93.64" y="238.75" width="16.97" height="18.75" fill="#f97316"/>
+<text class="small" x="102.12" y="450" text-anchor="middle" transform="rotate(45 102.12,450)">balanced_small:7</text>
+<rect x="117.89" y="243.50" width="16.97" height="14.00" fill="#f97316"/>
+<rect x="142.14" y="239.05" width="16.97" height="18.45" fill="#f97316"/>
+<text class="small" x="150.62" y="450" text-anchor="middle" transform="rotate(45 150.62,450)">balanced_small:9</text>
+<rect x="166.39" y="237.72" width="16.97" height="19.78" fill="#f97316"/>
+<rect x="190.64" y="238.42" width="16.97" height="19.08" fill="#f97316"/>
+<text class="small" x="199.12" y="450" text-anchor="middle" transform="rotate(45 199.12,450)">balanced_small:11</text>
+<rect x="214.89" y="235.53" width="16.97" height="21.97" fill="#f97316"/>
+<rect x="239.14" y="239.41" width="16.97" height="18.09" fill="#f97316"/>
+<text class="small" x="247.62" y="450" text-anchor="middle" transform="rotate(45 247.62,450)">balanced_small:13</text>
+<rect x="263.39" y="237.17" width="16.97" height="20.33" fill="#f97316"/>
+<rect x="287.64" y="234.30" width="16.97" height="23.20" fill="#f97316"/>
+<text class="small" x="296.12" y="450" text-anchor="middle" transform="rotate(45 296.12,450)">balanced_small:15</text>
+<rect x="311.89" y="85.00" width="16.97" height="172.50" fill="#f97316"/>
+<rect x="336.14" y="255.20" width="16.97" height="2.30" fill="#f97316"/>
+<text class="small" x="344.62" y="450" text-anchor="middle" transform="rotate(45 344.62,450)">dense_medium:7</text>
+<rect x="360.39" y="253.81" width="16.97" height="3.69" fill="#f97316"/>
+<rect x="384.64" y="253.07" width="16.97" height="4.43" fill="#f97316"/>
+<text class="small" x="393.12" y="450" text-anchor="middle" transform="rotate(45 393.12,450)">dense_medium:9</text>
+<rect x="408.89" y="253.57" width="16.97" height="3.93" fill="#f97316"/>
+<rect x="433.14" y="252.68" width="16.97" height="4.82" fill="#f97316"/>
+<text class="small" x="441.62" y="450" text-anchor="middle" transform="rotate(45 441.62,450)">dense_medium:11</text>
+<rect x="457.39" y="250.14" width="16.97" height="7.36" fill="#f97316"/>
+<rect x="481.64" y="250.26" width="16.97" height="7.24" fill="#f97316"/>
+<text class="small" x="490.12" y="450" text-anchor="middle" transform="rotate(45 490.12,450)">dense_medium:13</text>
+<rect x="505.89" y="247.02" width="16.97" height="10.48" fill="#f97316"/>
+<rect x="530.14" y="138.40" width="16.97" height="119.10" fill="#f97316"/>
+<text class="small" x="538.62" y="450" text-anchor="middle" transform="rotate(45 538.62,450)">dense_medium:15</text>
+<rect x="554.39" y="220.83" width="16.97" height="36.67" fill="#f97316"/>
+<rect x="578.64" y="243.02" width="16.97" height="14.48" fill="#f97316"/>
+<text class="small" x="587.12" y="450" text-anchor="middle" transform="rotate(45 587.12,450)">tight_capacity:7</text>
+<rect x="602.89" y="239.95" width="16.97" height="17.55" fill="#f97316"/>
+<rect x="627.14" y="243.27" width="16.97" height="14.23" fill="#f97316"/>
+<text class="small" x="635.62" y="450" text-anchor="middle" transform="rotate(45 635.62,450)">tight_capacity:9</text>
+<rect x="651.39" y="244.57" width="16.97" height="12.93" fill="#f97316"/>
+<rect x="675.64" y="242.78" width="16.97" height="14.72" fill="#f97316"/>
+<text class="small" x="684.12" y="450" text-anchor="middle" transform="rotate(45 684.12,450)">tight_capacity:11</text>
+<rect x="699.89" y="244.16" width="16.97" height="13.34" fill="#f97316"/>
+<rect x="724.14" y="244.68" width="16.97" height="12.82" fill="#f97316"/>
+<text class="small" x="732.62" y="450" text-anchor="middle" transform="rotate(45 732.62,450)">tight_capacity:13</text>
+<rect x="748.39" y="234.11" width="16.97" height="23.39" fill="#f97316"/>
+<rect x="772.64" y="243.58" width="16.97" height="13.92" fill="#f97316"/>
+<text class="small" x="781.12" y="450" text-anchor="middle" transform="rotate(45 781.12,450)">tight_capacity:15</text>
+<rect x="796.89" y="243.32" width="16.97" height="14.18" fill="#f97316"/>
+<rect x="821.14" y="243.50" width="16.97" height="14.00" fill="#f97316"/>
+<text class="small" x="829.62" y="450" text-anchor="middle" transform="rotate(45 829.62,450)">wide_large:7</text>
+<rect x="845.39" y="243.88" width="16.97" height="13.62" fill="#f97316"/>
+<rect x="869.64" y="250.20" width="16.97" height="7.30" fill="#f97316"/>
+<text class="small" x="878.12" y="450" text-anchor="middle" transform="rotate(45 878.12,450)">wide_large:9</text>
+<rect x="893.89" y="257.50" width="16.97" height="39.31" fill="#16a34a"/>
+<rect x="918.14" y="257.50" width="16.97" height="8.27" fill="#16a34a"/>
+<text class="small" x="926.62" y="450" text-anchor="middle" transform="rotate(45 926.62,450)">wide_large:11</text>
+<rect x="942.39" y="214.82" width="16.97" height="42.68" fill="#f97316"/>
+<rect x="966.64" y="170.17" width="16.97" height="87.33" fill="#f97316"/>
+<text class="small" x="975.12" y="450" text-anchor="middle" transform="rotate(45 975.12,450)">wide_large:13</text>
+<rect x="990.89" y="241.83" width="16.97" height="15.67" fill="#f97316"/>
+<rect x="1015.14" y="240.45" width="16.97" height="17.05" fill="#f97316"/>
+<text class="small" x="1023.62" y="450" text-anchor="middle" transform="rotate(45 1023.62,450)">wide_large:15</text>
+<rect x="1039.39" y="244.92" width="16.97" height="12.58" fill="#f97316"/>
+</svg>

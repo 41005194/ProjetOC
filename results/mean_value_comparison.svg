@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520">
+<style>
+text { font-family: Arial, sans-serif; fill: #1f2937; }
+.title { font-size: 20px; font-weight: bold; }
+.label { font-size: 12px; }
+.small { font-size: 11px; }
+</style>
+<rect x="0" y="0" width="100%" height="100%" fill="#f8fafc"/>
+<text class="title" x="90" y="35">Comparaison des valeurs moyennes</text>
+<text class="label" x="90" y="58">Moyenne de la meilleure valeur obtenue sur 10 seeds pour chaque instance.</text>
+<line x1="90" y1="85" x2="90" y2="410" stroke="#475569" stroke-width="1.5"/>
+<line x1="90" y1="410" x2="940" y2="410" stroke="#475569" stroke-width="1.5"/>
+<line x1="90" y1="410.00" x2="940" y2="410.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="414.00" text-anchor="end">0.00</text>
+<line x1="90" y1="345.00" x2="940" y2="345.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="349.00" text-anchor="end">42.20</text>
+<line x1="90" y1="280.00" x2="940" y2="280.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="284.00" text-anchor="end">84.40</text>
+<line x1="90" y1="215.00" x2="940" y2="215.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="219.00" text-anchor="end">126.60</text>
+<line x1="90" y1="150.00" x2="940" y2="150.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="154.00" text-anchor="end">168.80</text>
+<line x1="90" y1="85.00" x2="940" y2="85.00" stroke="#e2e8f0" stroke-width="1"/>
+<text class="small" x="80" y="89.00" text-anchor="end">211.00</text>
+<rect x="154.25" y="343.77" width="36.00" height="66.23" fill="#2563eb"/>
+<rect x="202.25" y="343.77" width="36.00" height="66.23" fill="#f97316"/>
+<text class="small" x="172.25" y="337.77" text-anchor="middle">43.00</text>
+<text class="small" x="220.25" y="337.77" text-anchor="middle">43.00</text>
+<text class="label" x="196.25" y="434" text-anchor="middle">balanced_small</text>
+<rect x="366.75" y="206.68" width="36.00" height="203.32" fill="#2563eb"/>
+<rect x="414.75" y="206.68" width="36.00" height="203.32" fill="#f97316"/>
+<text class="small" x="384.75" y="200.68" text-anchor="middle">132.00</text>
+<text class="small" x="432.75" y="200.68" text-anchor="middle">132.00</text>
+<text class="label" x="408.75" y="434" text-anchor="middle">dense_medium</text>
+<rect x="579.25" y="346.85" width="36.00" height="63.15" fill="#2563eb"/>
+<rect x="627.25" y="346.85" width="36.00" height="63.15" fill="#f97316"/>
+<text class="small" x="597.25" y="340.85" text-anchor="middle">41.00</text>
+<text class="small" x="645.25" y="340.85" text-anchor="middle">41.00</text>
+<text class="label" x="621.25" y="434" text-anchor="middle">tight_capacity</text>
+<rect x="791.75" y="85.00" width="36.00" height="325.00" fill="#2563eb"/>
+<rect x="839.75" y="85.00" width="36.00" height="325.00" fill="#f97316"/>
+<text class="small" x="809.75" y="79.00" text-anchor="middle">211.00</text>
+<text class="small" x="857.75" y="79.00" text-anchor="middle">211.00</text>
+<text class="label" x="833.75" y="434" text-anchor="middle">wide_large</text>
+<rect x="770" y="35" width="16" height="16" fill="#2563eb"/>
+<text class="label" x="794" y="48">Baseline ACO</text>
+<rect x="770" y="61" width="16" height="16" fill="#f97316"/>
+<text class="label" x="794" y="74">ACO + ML</text>
+</svg>

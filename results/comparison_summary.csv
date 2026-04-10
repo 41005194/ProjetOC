@@ -1,0 +1,5 @@
+instance,capacity,item_count,iterations,colony_size,seed_count,baseline_best,baseline_mean,baseline_stdev,baseline_invalid_solutions,baseline_total_runtime_seconds,ml_best,ml_mean,ml_stdev,ml_invalid_solutions,ml_total_runtime_seconds,mean_best_value_delta,mean_runtime_delta_seconds
+balanced_small,20,8,30,12,10,43,43,0.0,0,0.04444370901910588,43,43,0.0,0,0.14548929099692032,0.0,0.010104558197781444
+dense_medium,35,10,30,12,10,132,132,0.0,0,0.11154983399319462,132,132,0.0,0,0.16993291696417145,0.0,0.005838308297097683
+tight_capacity,18,9,30,12,10,41,41,0.0,0,0.060442207992309704,41,41,0.0,0,0.10468762597884052,0.0,0.004424541798653081
+wide_large,60,14,30,12,10,211,211,0.0,0,0.19060545903630555,211,211,0.0,0,0.23808904099860229,0.0,0.004748358196229674
